@@ -1,0 +1,13 @@
+<%= render "layouts/top", content_title: "Coupons", title: "Coupons", button_text: "Create New Coupon", button_path: new_coupon_path%>
+<div id="coupons" class="min-w-full">
+  <% if @coupons.any? %>
+  <div class="grid grid-cols-4 sm:gap-4">
+    <% @coupons.each do |coupon| %>
+      <%= render "coupon", coupon: coupon%>
+    <% end %>
+    </div>
+  <% else %>
+    <p class="text-center my-10 dark:text-white">No coupons created.</p>
+  <% end %>
+</div>
+

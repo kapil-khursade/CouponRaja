@@ -1,0 +1,26 @@
+<div class="flex items-center justify-center">
+  <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md">
+<%= form_with(model: busine, class: "contents", html: {class: "space-y-4" }) do |f| %>
+  <% if busine.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(busine.errors.count, "error") %> prohibited this busines from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% busine.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div>
+      <%= f.label "GSTIN", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :gstin, :maxlength => 15,  autofocus: true, autocomplete: "gstin", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+    </div>
+
+  <div>
+    <%= f.submit "Add New Business", class: "w-full bg-sky-500 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+  </div>
+<% end %>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<% content_for :title, "New busine" %>
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-4xl font-extrabold dark:text-white">New Busines</h2>
+    <%= link_to "Back to busines", busines_path, class: "text-center hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+  </div>
+  <%= render "form", busine: @busine %>
+

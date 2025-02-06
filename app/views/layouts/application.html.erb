@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Coupon Raja" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Favicon %>
+    <%= favicon_link_tag 'Coupon_Raja-removebg-preview.png', rel: 'icon', type: 'image/png' %>
+
+    <%# Stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+
+    <%# JavaScript Files (Proper Order) %>
+    <%= javascript_include_tag "application", type: "module", defer: true %>
+    <%= javascript_include_tag "toggle_coupon_code", type: "module", defer: true %>
+    <%= javascript_include_tag "toggle_coupon_active_status", type: "module", defer: true %>
+
+    <%# Dark Mode Handling %>
+    <script>
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
+
+    <%# Flowbite (For UI Components) %>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.js"></script>
+  </head>
+
+  <body class="bg-gray-100 dark:bg-gray-900 min-h-screen">
+    <% if user_signed_in? %>
+     <%= render "layouts/nav"%>
+    <% end %>
+    
+    <% if notice.present? %>
+    <div class="px-4 fixed bottom-0">
+     <p class="py-2 px-3 bg-green-500 mb-5 text-white font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    </div>
+    <% end %>
+
+    <% if alert.present? %>
+    <div class="px-4 fixed bottom-0">
+     <p class="py-2 px-3 bg-red-500 mb-5 text-white font-medium rounded-md inline-block" id="alert"><%= alert %></p>
+    </div> 
+    <% end %>  
+
+    <div class="<%= user_signed_in? ? 'pt-20' : '' %> px-4 min-h-screen">
+    <%= yield %>
+    </div>
+    <% if user_signed_in? %>
+     <%= render "layouts/footer"%>
+    <% end %>
+
+  </body>
+
+</html>

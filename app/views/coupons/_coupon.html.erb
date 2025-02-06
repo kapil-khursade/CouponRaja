@@ -1,0 +1,67 @@
+<div class="isolated_bs relative max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <!-- Triangle Badge -->
+  <% if coupon.redeemed %>
+  <div class="ribbon ribbon-top-left z-10">
+    <span class="text-white font-medium bg-secondary"> Redmed</span>
+  </div>
+  <% end %>
+
+  <div class="relative mb-2">
+        <!-- Coupon Code (Masked by Default) -->
+        <span class="text-sm font-bold tracking-tight text-gray-900 dark:text-white code" data-code="<%= coupon.code %>">
+            ***************
+        </span>
+        
+        <!-- Toggle Button -->
+        <button type="button" class="toggle_coupon_code text-lg font-bold tracking-tight text-gray-900 dark:text-white focus:outline-none">
+            Show Code
+        </button>
+  </div>
+
+  <!-- Coupon Details -->
+  <dl>
+    <div class="row">
+      <dt class="text-sm font-medium text-gray-500 col">Business</dt>
+      <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 col-span-2 col">
+        <%= coupon.busine.trade_name %>
+      </dd>
+    </div>
+
+    <div class="row">
+        <dt class="text-sm font-medium text-gray-500 col">Valid upto</dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 col-span-2 col">
+          <%= coupon.valid_up_to.strftime("%d %b %Y %H:%M") if coupon.valid_up_to %>
+        </dd>
+    </div>
+
+    <div class="row">
+        <dt class="text-sm font-medium text-gray-500 col">Type</dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 col-span-2 capitalize col">
+          <%= coupon.coupon_type.humanize %>
+        </dd>
+
+        <dt class="text-sm font-medium text-gray-500 col">Value</dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-white sm:mt-0 col-span-2 capitalize col">
+          <%= coupon.value %>
+        </dd>
+    </div>
+
+  </dl>
+
+
+  <!-- Delete Button -->
+  <div class="row mt-4">
+    <div class="col-4">
+      <%= button_to "Delete", coupon_path(coupon), method: :delete, data: { confirm: "Are you sure you want to delete this coupon?" }, class: "p-1 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700" %>
+    </div>
+    <div class="form-switch col flex justify-between">
+      <label class="text-sm font-medium text-gray-500" for="toggle_coupon_active_status-<%= coupon.id %>">Status</label>
+      <input class="form-check-input cursor-pointer toggle_coupon_active_status bg-<%= coupon.active_status ? "success" : "secondary" %>"
+            type="checkbox"
+            role="switch"
+            id="toggle_coupon_active_status-<%= coupon.id %>"
+            data-coupon-id="<%= coupon.id %>"
+            <%= coupon.active_status ? "checked" : nil %>>
+    </div>
+  </div>
+</div>

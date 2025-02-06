@@ -1,0 +1,46 @@
+<% content_for :title, "Profile Update" %>
+<div class="flex justify-between items-center">
+<h2 class="text-4xl font-extrabold dark:text-white"><%= @user.role.capitalize%> Update</h2>
+<%= link_to "Back To Profile", profile_path, class: "text-center hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+</div>
+</div>
+
+<div class="flex items-center justify-center">
+  <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put ,  class: "space-y-4" }) do |f| %> 
+      
+      <% if @user.confirmed_at.nil? %>
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email, disabled: true,  autofocus: true, autocomplete: "email", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+      </div>
+      <% end %>
+
+      <div>
+        <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :name,  autofocus: true, autocomplete: "name", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+      </div>
+
+      <% if !@user.mobile_no_verified %>
+      <div>
+        <%= f.label :mobile_no, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_field :mobile_no, :maxlength => 10, disabled: @user.mobile_no_verified,  autofocus: true, autocomplete: "mobile_no", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+      </div>
+      <% end %>
+
+      <div>
+        <%= f.label :current_password, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :current_password,  autofocus: true, autocomplete: "current_password", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+      </div>
+
+      <div>
+        <p class="text-red-800 text-sm">*Contact admin to change verified email and password</p>
+      </div>  
+
+      <div>
+        <%= f.submit "Update", class: "w-full bg-sky-500 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+      </div>
+      
+    <% end %>
+  </div>
+</div>

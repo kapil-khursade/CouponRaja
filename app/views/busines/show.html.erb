@@ -1,0 +1,31 @@
+<%= render "layouts/top", content_title: "Showing Busines", title: @busine.trade_name, button_text: "Back To Business", button_path: busines_path%>
+
+<div class="flex justify-between bg-white rounded-xl shadow-md">
+  <div class="w-full p-6 ">
+          <% @config_obj_1.each do |key| %>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">
+                <%= key.humanize %>
+              </dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= @busine[key] %>
+              </dd>
+            </div>
+          <% end %>
+  </div>
+    <div class="w-full p-6">
+          <% @config_obj_2.each do |key| %>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">
+                <%= key.humanize %>
+              </dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= @busine[key].try(:humanize) %>
+              </dd>
+            </div>
+          <% end %>
+  </div>
+</div>
+<div class="flex justify-end items-center">
+  <%= button_to "Remove this busine", @busine, method: :delete, class: "mt-2 rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium" %>
+</div>

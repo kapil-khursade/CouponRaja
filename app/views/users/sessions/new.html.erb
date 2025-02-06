@@ -1,0 +1,35 @@
+<div class="flex min-h-screen items-center justify-center">
+  <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Welcome</h1>
+
+    <div class="flex items-center justify-center">
+    <span class="h-8 w-10"><%= image_tag("Coupon_Raja-removebg-preview.png") %></span>
+    </div>
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
+      <div>
+        <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+      </div>
+
+      <div>
+        <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center">
+          <%= f.check_box :remember_me, class: "h-4 w-4 text-sky-600 focus:ring-sky-500 border-gray-300 rounded" %>
+          <%= f.label :remember_me, class: "ml-2 text-sm text-gray-600" %>
+        </div>
+      <% end %>
+
+      <div>
+        <%= f.submit "Log in", class: "w-full cursor-pointer bg-sky-500 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+      </div>
+      
+    <% end %>
+
+    <%= render "users/shared/links" %>
+  </div>
+</div>

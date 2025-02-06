@@ -1,0 +1,19 @@
+<% content_for :title, "Verify Mobile No" %>
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-4xl font-extrabold dark:text-white">Verify Mobile No</h2>
+  <%= link_to "Back to Profile", profile_path, class: "text-center hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+</div>
+
+<div class="flex items-center justify-center">
+  <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md">
+<%= form_with(url: verify_mobile_no_index_path, class: "contents", html: {class: "space-y-4" }) do |f| %>
+    <div>
+      <%= f.text_field :otp, :placeholder => "Enter OTP here", :maxlength => 6,  autofocus: true, autocomplete: "gstin", class: "w-full mt-1 p-2 border border-gray-300 rounded-lg focus:ring-sky-500 focus:border-sky-500" %>
+    </div>
+
+    <div>
+      <%= f.submit "Submit OTP", class: " cursor-pointer w-full bg-sky-500 hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+    </div>
+<% end %>
+  </div>
+</div>

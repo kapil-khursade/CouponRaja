@@ -1,0 +1,64 @@
+<% content_for :title, "Profile" %>
+<div class="w-full flex items-center justify-between mb-6">
+<h2 class="text-4xl font-extrabold dark:text-white"><%= @user.role.capitalize%> Profile</h2>
+<%= link_to "Update User", edit_user_registration_path, class: "text-center hover:bg-sky-700 text-white font-medium py-2 px-4 rounded-lg transition" %>
+</div>
+
+
+<div class="flex items-center justify-center">
+  <div class="w-full p-6 bg-white rounded-xl shadow-md">
+        <dl class="sm:divide-y sm:divide-gray-200">
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Full name
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.name %>
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Email address
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center justify-between">
+                    <%= @user.email %>
+                    <% if !@user.confirmed_at.nil? %>
+                        <span class="text-center text-green-500 font-medium">
+                            Verified
+                        </span>
+                    <% else %>
+                        <span class="text-center bg-[red] text-white font-medium py-1 px-2 rounded-lg">
+                            Not Verified
+                        </span>
+                    <% end %>
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Phone number
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex items-center justify-between">
+                    <%= @user.mobile_no %>
+                    <% if @user.mobile_no_verified %>
+                        <span class="text-center text-green-500 font-medium">
+                            Verified
+                        </span>
+                    <% else %>
+                        <%= link_to "verify here", new_verify_mobile_no_path, class: "button text-center text-blue-600 underline font-medium cursor-pointer"%>
+                    <% end %>
+                </dd>
+            </div>
+
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Joined On
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    <%= @user.created_at.strftime("%m/%d/%Y")  %>
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
+
+   
